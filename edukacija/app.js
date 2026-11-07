@@ -9,7 +9,13 @@ const store = {
 let D, docs = [];
 const main = $('#main'), nav = $('#nav');
 
-fetch('data/content.json').then(r => r.json()).then(d => { D = d; build(); route(); });
+fetch('data/content.json')
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(d => { D = d; build(); route(); })
+  .catch(err => {
+    console.error('Ne mogu učitati edukacijski sadržaj:', err);
+    main.innerHTML = '<div class="box warn"><div class="label">Sadržaj trenutačno nije dostupan</div><p>Došlo je do pogreške pri učitavanju lekcija. Osvježite stranicu. Ako se problem ponovi, javite nam se.</p></div>';
+  });
 
 function build() {
   const S = D.sections;
@@ -137,7 +143,12 @@ $('#q').addEventListener('input', e => {
       hits.slice(0, 40).map(h => `<a class="link" href="#/${h.d.id}"><b>${esc(h.d.title)}</b>${esc(h.snip).replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'ig'), m => '<mark>' + m + '</mark>')}…</a>`).join('');
   }, 200);
 });
-$('#menu').onclick = () => nav.classList.toggle('open');
+const menu = $('#menu');
+if (menu) menu.onclick = () => {
+  const isOpen = nav.classList.toggle('open');
+  menu.setAttribute('aria-expanded', String(isOpen));
+  menu.setAttribute('aria-label', isOpen ? 'Zatvori sadržaj poglavlja' : 'Otvori sadržaj poglavlja');
+};
 const th = store.get('theme', matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
 document.documentElement.dataset.theme = th;
 $('#theme').onclick = () => { const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = t; store.set('theme', t); };
