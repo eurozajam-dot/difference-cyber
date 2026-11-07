@@ -40,3 +40,5 @@ ol.steps{padding-left:22px}ol.steps li{padding:3px 0}
 mark{background:#FFE58A;color:#000}
 @media(max-width:860px){#menu{display:block}nav{position:fixed;left:0;top:53px;z-index:15;background:var(--bg);transform:translateX(-100%);transition:.2s;width:86%;max-width:330px}nav.open{transform:none}.brand{font-size:13px;overflow:hidden;text-overflow:ellipsis}.top input{max-width:none;min-width:0}.cmd{grid-template-columns:1fr}}
 @media print{.top,nav,.pager{display:none}main{max-width:none}}
+
+.education-powered-by{display:flex;flex-direction:column;align-items:center;gap:7px;padding:20px 16px 28px;border-top:1px solid rgba(150,180,210,.16);background:#07111f;color:#9aacc0;font-size:9px;letter-spacing:.22em;font-weight:800}.education-powered-by a{display:block;width:175px;max-width:60vw;border-radius:7px;overflow:hidden}.education-powered-by img{display:block;width:100%;height:auto}.education-powered-by a:focus-visible{outline:2px solid #55d9e8;outline-offset:4px}

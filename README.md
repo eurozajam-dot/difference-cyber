@@ -64,3 +64,19 @@ IBAN i BIC nisu prikazani javno.
 - [ ] Dodati canonical URL-ove i sitemap nakon izbora domene.
 - [ ] Provjeriti sve linkove, mobilni prikaz i stvarni sadržaj.
 - [ ] Povezati Search Console i po želji analitiku uz odgovarajuću privolu.
+
+
+## Nova domena i BrandistiQ potpis (verzija 1.2)
+
+Primarna domena projekta je **https://digitalna-sigurnost.com.hr/**. Sve glavne HTML stranice imaju canonical i Open Graph URL za tu domenu, a dodan je i `sitemap.xml` te ažuriran `robots.txt`.
+
+Na dnu svake stranice nalazi se klikabilni BrandistiQ logo uz oznaku **POWERED BY**. Logo vodi na https://brandistiq.eu. Edukacijska aplikacija ima zaseban footer potpis jer koristi vlastiti raspored i CSS.
+
+### Obavezno prije produkcije
+1. U Netlify projektu otvoriti **Domain management → Add a domain** i dodati `digitalna-sigurnost.com.hr` te `www.digitalna-sigurnost.com.hr`.
+2. Kod registrara domene postaviti DNS zapise točno prema vrijednostima koje prikaže Netlify (nemoj nasumično mijenjati postojeće nameservere ili A/CNAME zapise).
+3. U Netlifyju postaviti `digitalna-sigurnost.com.hr` kao primary domain i provjeriti izdavanje HTTPS certifikata.
+4. Nakon što domena radi preko HTTPS-a, u Google Search Console dodati domenu ili URL-prefix property i poslati `https://digitalna-sigurnost.com.hr/sitemap.xml`.
+5. Provjeriti kontaktni Netlify Forms obrazac nakon produkcijskog deploya.
+
+Preusmjeravanje `www` na glavnu domenu uključeno je u `netlify.toml`; stvarno će raditi tek nakon što su obje domene dodane Netlify projektu i DNS ispravno postavljen.

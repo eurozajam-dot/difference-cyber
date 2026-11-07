@@ -1,3 +1,9 @@
+[[redirects]]
+  from = "https://www.digitalna-sigurnost.com.hr/*"
+  to = "https://digitalna-sigurnost.com.hr/:splat"
+  status = 301
+  force = true
+
 [build]
   publish = "."
 
